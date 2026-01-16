@@ -1,5 +1,10 @@
 .min-h-screen { min-height: 100vh; }
 .bg-background { background-color: var(--background); }
+.nav-bar { background-color: var(--background); border-bottom: 1px solid var(--border); padding: 1rem; position: sticky; top: 0; z-index: 50; }
+.nav-container { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+.back-link { display: flex; align-items: center; gap: 0.5rem; color: var(--muted-foreground); font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+.back-link:hover { color: var(--primary); }
+.nav-logo { font-weight: 700; letter-spacing: 0.05em; font-size: 1.125rem; }
 .header-section { background-color: var(--background); padding: 4rem 1rem; text-align: center; border-bottom: 1px solid var(--border); }
 .badge { display: inline-flex; align-items: center; gap: 0.5rem; background-color: rgba(34, 197, 94, 0.1); color: var(--primary); padding: 0.5rem 1rem; border-radius: 9999px; font-size: 0.875rem; font-weight: 500; margin-bottom: 1.5rem; border: 1px solid rgba(34, 197, 94, 0.2); }
 .title { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: -0.025em; }
@@ -23,7 +28,8 @@
 .contact-button { display: flex; align-items: center; justify-content: center; gap: 0.75rem; padding: 0.875rem; border-radius: 12px; font-weight: 600; transition: all 0.2s; }
 .btn-whatsapp { background-color: #25d366; color: white; }
 .btn-whatsapp:hover { background-color: #1ebc57; transform: scale(1.02); }
-.btn-email { background-color: var(--background); border: 1px solid var(--border); color: var(--foreground); }
-.btn-email:hover { border-color: var(--primary); transform: scale(1.02); }
-.footer-note { margin-top: 2rem; font-size: 0.875rem; color: var(--muted-foreground); }
-@media (max-width: 640px) { .title { font-size: 2.25rem; } .header-section { padding: 3rem 1rem; } }
+.btn-catalog { background-color: var(--background); border: 1px solid var(--border); color: var(--foreground); }
+.btn-catalog:hover { border-color: var(--primary); transform: scale(1.02); }
+.footer-info { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+.footer-note { font-size: 0.9375rem; color: var(--muted-foreground); line-height: 1.6; }
+@media (max-width: 640px) { .title { font-size: 2.25rem; } .header-section { padding: 3rem 1rem; } .nav-logo { display: none; } }

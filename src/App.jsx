@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ChevronDown, MessageCircle, Mail, Sparkles, ShieldCheck, Truck, CreditCard, RefreshCcw } from 'lucide-react';
+import { ChevronDown, MessageCircle, Mail, Sparkles, ShieldCheck, Truck, ShoppingBag, ArrowLeft } from 'lucide-react';
 import './App.css';
 
 const faqData = [
@@ -56,7 +56,16 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
+      <nav className="nav-bar">
+        <div className="nav-container">
+          <a href="https://jvstore.com.br" className="back-link">
+            <ArrowLeft className="w-4 h-4" />
+            <span>Voltar ao Catálogo</span>
+          </a>
+          <div className="nav-logo">JV STORE</div>
+        </div>
+      </nav>
+
       <header className="header-section">
         <div className="badge">
           <Sparkles className="w-4 h-4" />
@@ -68,7 +77,6 @@ function App() {
         </p>
       </header>
 
-      {/* Content */}
       <main className="content-container">
         {faqData.map((section, sIdx) => (
           <div key={sIdx} className="category-section">
@@ -101,7 +109,6 @@ function App() {
           </div>
         ))}
 
-        {/* Footer Contact */}
         <section className="footer-section">
           <h2 className="footer-title">Ainda tem dúvidas?</h2>
           <p className="footer-text">Nossa equipe está pronta para te atender agora mesmo.</p>
@@ -110,12 +117,18 @@ function App() {
               <MessageCircle className="w-5 h-5" />
               WhatsApp
             </a>
-            <a href="mailto:contato@jvstore.com.br" className="contact-button btn-email">
-              <Mail className="w-5 h-5" />
-              E-mail
+            <a href="https://jvstore.com.br" className="contact-button btn-catalog">
+              <ShoppingBag className="w-5 h-5" />
+              Ver Catálogo
             </a>
           </div>
-          <p className="footer-note">Atendimento: Segunda a sexta, 9h às 18h</p>
+          <div className="footer-info">
+            <p className="footer-note">
+              <strong>Horário de Atendimento:</strong><br />
+              Segunda a Sexta: 9h às 18h<br />
+              Sábado: 10h às 19h30
+            </p>
+          </div>
         </section>
       </main>
     </div>

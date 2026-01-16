@@ -1,168 +1,97 @@
 import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, MessageCircle, Mail, Sparkles, ShieldCheck, Truck, CreditCard, RefreshCcw } from 'lucide-react';
 import './App.css';
 
 const faqData = [
   {
-    category: 'Tamanhos e Medidas',
+    category: "Tamanhos e Medidas",
+    icon: <Sparkles className="w-5 h-5" />,
     questions: [
       {
-        title: 'Como saber qual tamanho me serve?',
-        answer: 'Cada produto tem uma tabela de medidas. Recomendamos medir uma roupa que você já usa e comparar com a tabela. Mostramos também a altura e tamanho que o modelo veste para referência visual.',
+        q: "Como saber qual tamanho me serve?",
+        a: "Temos uma tabela de medidas detalhada em cada página de produto. Recomendamos medir uma peça que você já tenha e comparar com as nossas medidas para garantir o ajuste perfeito."
       },
       {
-        title: 'Posso devolver se o tamanho não servir?',
-        answer: 'Sim! Oferecemos primeira troca grátis se o tamanho não servir. Basta entrar em contato conosco no WhatsApp ou email dentro de 7 dias após receber.',
-      },
-      {
-        title: 'Vocês enviam para fora do Brasil?',
-        answer: 'No momento, entregamos apenas em São Paulo e região metropolitana. Consulte a zona de entrega no checkout.',
-      },
-    ],
+        q: "Posso devolver se o tamanho não servir?",
+        a: "Sim! Oferecemos a primeira troca grátis em até 7 dias após o recebimento, caso o tamanho não seja o ideal."
+      }
+    ]
   },
   {
-    category: 'Pedidos e Entrega',
+    category: "Pedidos e Entrega",
+    icon: <Truck className="w-5 h-5" />,
     questions: [
       {
-        title: 'Qual é o prazo de entrega?',
-        answer: 'Postagem até 24 horas após confirmação do pagamento. Entrega de 2 a 5 dias úteis, dependendo da zona. Prazos especiais podem ser consultados no checkout.',
+        q: "Qual é o prazo de entrega?",
+        a: "O prazo varia de acordo com sua região. Geralmente, pedidos para capitais levam de 3 a 7 dias úteis após a postagem."
       },
       {
-        title: 'Como rastrear meu pedido?',
-        answer: 'Após o envio, você receberá um email com o código de rastreamento. Você pode acompanhar pelo link enviado ou entrar em contato conosco com o número do pedido.',
-      },
-      {
-        title: 'Qual é o custo do frete?',
-        answer: 'O frete varia por zona: Local R$ 10, Próxima 1 R$ 15, Próxima 2 R$ 20, Regional R$ 28, Estendida R$ 35.',
-      },
-    ],
+        q: "Como rastrear meu pedido?",
+        a: "Assim que seu pedido for enviado, você receberá um código de rastreio por e-mail e WhatsApp para acompanhar cada etapa da entrega."
+      }
+    ]
   },
   {
-    category: 'Cupons e Descontos',
+    category: "Pagamento e Segurança",
+    icon: <ShieldCheck className="w-5 h-5" />,
     questions: [
       {
-        title: 'Como usar um cupom de desconto?',
-        answer: 'No checkout, na seção "Cupom de Desconto", digite o código e clique em "Aplicar". O desconto será calculado automaticamente.',
+        q: "Quais são as formas de pagamento?",
+        a: "Aceitamos Pix (com desconto), Cartão de Crédito em até 12x e Boleto Bancário."
       },
       {
-        title: 'Posso usar mais de um cupom?',
-        answer: 'Não, apenas um cupom por pedido. Se você tentar aplicar outro, o anterior será removido.',
-      },
-      {
-        title: 'Meu cupom expirou?',
-        answer: 'Cupons têm datas de validade. Se o seu cupom não funciona, pode ter expirado. Entre em contato para saber se há cupons ativos no momento.',
-      },
-    ],
-  },
-  {
-    category: 'Avaliações e Reviews',
-    questions: [
-      {
-        title: 'Como deixar uma avaliação?',
-        answer: 'Acesse sua conta, vá para "Meus Pedidos", clique em "Avaliar Produto", escolha uma nota de 1 a 5 estrelas e escreva um comentário (opcional).',
-      },
-      {
-        title: 'Minha avaliação aparece imediatamente?',
-        answer: 'Não. Todas as avaliações são revisadas por nossa equipe antes de aparecer no site. Isso garante que apenas avaliações legítimas sejam exibidas.',
-      },
-      {
-        title: 'O que significa "Compra Verificada"?',
-        answer: 'Uma avaliação com "Compra Verificada" significa que a pessoa realmente comprou o produto conosco. Essas avaliações têm mais peso e credibilidade.',
-      },
-    ],
-  },
-  {
-    category: 'Pagamento',
-    questions: [
-      {
-        title: 'Quais são as formas de pagamento?',
-        answer: 'Aceitamos Cartão de Crédito (parcelado em até 12x), Pix (à vista com 5% de desconto) e Stripe (cartão internacional).',
-      },
-      {
-        title: 'O pagamento é seguro?',
-        answer: 'Sim! Usamos Stripe e Pix com criptografia de ponta a ponta. Seus dados nunca são armazenados em nossos servidores.',
-      },
-      {
-        title: 'Meu pagamento foi recusado. O que fazer?',
-        answer: 'Verifique se os dados estão corretos, confirme se há saldo disponível, tente novamente em alguns minutos ou entre em contato conosco.',
-      },
-    ],
-  },
-  {
-    category: 'Devoluções e Trocas',
-    questions: [
-      {
-        title: 'Qual é a política de devolução?',
-        answer: 'Prazo de 7 dias após receber. Primeira troca é grátis. Devoluções adicionais têm frete por conta do cliente.',
-      },
-      {
-        title: 'Como solicitar uma devolução?',
-        answer: 'Entre em contato conosco no WhatsApp ou email, informe o número do pedido e motivo. Enviaremos instruções de envio.',
-      },
-      {
-        title: 'Quanto tempo leva para receber o reembolso?',
-        answer: 'Após recebermos o produto: Troca em 2-5 dias úteis, Reembolso em 5-10 dias úteis para crédito na conta.',
-      },
-    ],
-  },
+        q: "O pagamento é seguro?",
+        a: "Totalmente. Utilizamos tecnologia de criptografia de ponta e processadores de pagamento certificados para garantir que seus dados estejam sempre protegidos."
+      }
+    ]
+  }
 ];
 
 function App() {
-  const [expandedItems, setExpandedItems] = useState([]);
+  const [openIndex, setOpenIndex] = useState(null);
 
-  const toggleExpand = (id) => {
-    setExpandedItems((prev) =>
-      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
-    );
+  const toggleFAQ = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-gradient-to-r from-primary to-primary/80 text-primary-foreground py-12 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Perguntas Frequentes</h1>
-          <p className="text-lg opacity-90">
-            Encontre respostas para as dúvidas mais comuns sobre compras, entrega e produtos.
-          </p>
+      <header className="header-section">
+        <div className="badge">
+          <Sparkles className="w-4 h-4" />
+          <span>Central de Ajuda JV STORE</span>
         </div>
-      </div>
+        <h1 className="title">Perguntas Frequentes</h1>
+        <p className="subtitle">
+          Tudo o que você precisa saber sobre seus pedidos, entregas e produtos em um só lugar.
+        </p>
+      </header>
 
-      {/* FAQ Content */}
-      <div className="max-w-4xl mx-auto px-4 py-12">
-        {faqData.map((section, sectionIndex) => (
-          <div key={sectionIndex} className="mb-12">
-            <h2 className="text-2xl font-bold text-foreground mb-6 pb-2 border-b-2 border-primary">
+      {/* Content */}
+      <main className="content-container">
+        {faqData.map((section, sIdx) => (
+          <div key={sIdx} className="category-section">
+            <h2 className="category-title">
+              {section.icon}
               {section.category}
             </h2>
-
-            <div className="space-y-4">
-              {section.questions.map((item, itemIndex) => {
-                const itemId = `${sectionIndex}-${itemIndex}`;
-                const isExpanded = expandedItems.includes(itemId);
-
+            <div className="faq-list">
+              {section.questions.map((item, qIdx) => {
+                const globalIdx = `${sIdx}-${qIdx}`;
+                const isOpen = openIndex === globalIdx;
                 return (
-                  <div
-                    key={itemIndex}
-                    className="border border-border rounded-lg overflow-hidden transition-all duration-200 hover:border-primary/50"
-                  >
-                    <button
-                      onClick={() => toggleExpand(itemId)}
-                      className="w-full px-6 py-4 flex items-center justify-between bg-card hover:bg-card/80 transition-colors"
+                  <div key={qIdx} className={`faq-item ${isOpen ? 'open' : ''}`}>
+                    <button 
+                      className="faq-trigger"
+                      onClick={() => toggleFAQ(globalIdx)}
                     >
-                      <h3 className="text-lg font-semibold text-foreground text-left">
-                        {item.title}
-                      </h3>
-                      <ChevronDown
-                        className={`h-5 w-5 text-primary transition-transform duration-200 flex-shrink-0 ml-4 ${
-                          isExpanded ? 'rotate-180' : ''
-                        }`}
-                      />
+                      <span>{item.q}</span>
+                      <ChevronDown className="faq-icon w-5 h-5" />
                     </button>
-
-                    {isExpanded && (
-                      <div className="px-6 py-4 bg-background border-t border-border">
-                        <p className="text-muted-foreground leading-relaxed">{item.answer}</p>
+                    {isOpen && (
+                      <div className="faq-content">
+                        {item.a}
                       </div>
                     )}
                   </div>
@@ -172,33 +101,23 @@ function App() {
           </div>
         ))}
 
-        {/* Contact Section */}
-        <div className="mt-16 p-8 bg-primary/10 border border-primary/20 rounded-lg">
-          <h3 className="text-2xl font-bold text-foreground mb-4">Ainda tem dúvidas?</h3>
-          <p className="text-muted-foreground mb-6">
-            Nossa equipe está pronta para ajudar! Entre em contato conosco:
-          </p>
-          <div className="grid md:grid-cols-2 gap-4">
-            <a
-              href="https://wa.me/5511999999999"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 p-4 bg-green-500 hover:bg-green-600 text-white rounded-lg font-semibold transition-colors"
-            >
-              <span>💬 WhatsApp</span>
+        {/* Footer Contact */}
+        <section className="footer-section">
+          <h2 className="footer-title">Ainda tem dúvidas?</h2>
+          <p className="footer-text">Nossa equipe está pronta para te atender agora mesmo.</p>
+          <div className="contact-grid">
+            <a href="https://wa.me/5511958855631" target="_blank" rel="noreferrer" className="contact-button btn-whatsapp">
+              <MessageCircle className="w-5 h-5" />
+              WhatsApp
             </a>
-            <a
-              href="mailto:contato@jvstore.com.br"
-              className="flex items-center gap-3 p-4 bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg font-semibold transition-colors"
-            >
-              <span>📧 Email</span>
+            <a href="mailto:contato@jvstore.com.br" className="contact-button btn-email">
+              <Mail className="w-5 h-5" />
+              E-mail
             </a>
           </div>
-          <p className="text-sm text-muted-foreground mt-4">
-            Atendimento: Segunda a sexta, 9h às 18h
-          </p>
-        </div>
-      </div>
+          <p className="footer-note">Atendimento: Segunda a sexta, 9h às 18h</p>
+        </section>
+      </main>
     </div>
   );
 }

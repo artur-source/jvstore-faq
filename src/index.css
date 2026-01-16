@@ -1,52 +1,46 @@
-:root {
-  font-family: Inter, system-ui, avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #0E0E0E;
+:root {
+  --primary: #22c55e;
+  --primary-foreground: #ffffff;
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --card: #141414;
+  --card-foreground: #ffffff;
+  --border: #262626;
+  --muted: #171717;
+  --muted-foreground: #a3a3a3;
+  --accent: #22c55e;
+  --accent-foreground: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
 }
 
 a {
-  font-weight: 500;
-  color: #1DB954;
-  text-decoration: inherit;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s;
 }
 
 a:hover {
-  color: #1DB954;
+  opacity: 0.8;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-
-button:hover {
-  border-color: #1DB954;
-}
-
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  border: none;
+  background: none;
+  font-family: inherit;
 }

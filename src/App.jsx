@@ -125,8 +125,7 @@ function App() {
           <div className="footer-info">
             <p className="footer-note">
               <strong>Horário de Atendimento:</strong><br />
-              Segunda a Sexta: 9h às 18h<br />
-              Sábado: 10h às 19h30
+              Segunda a Sábado: 10h às 19h30
             </p>
           </div>
         </section>
